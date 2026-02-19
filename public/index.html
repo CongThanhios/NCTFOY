@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="box">
+<h2>BUFF VIEW TIKTOK</h2>
+<input id="link" placeholder="Dán link TikTok">
+<button onclick="add()">Tăng view</button>
+<a href="task.html">Đi xem kiếm coin</a>
+</div>
+
+<script>
+function add() {
+  fetch("/add-task", {
+    method:"POST",
+    headers:{ "Content-Type":"application/json"},
+    body:JSON.stringify({link:link.value})
+  });
+  alert("Đã thêm nhiệm vụ");
+}
+</script>
+</body>
+</html>
