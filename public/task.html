@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="box">
+<h2>NHIỆM VỤ</h2>
+<div id="tasks"></div>
+</div>
+
+<script>
+fetch("/tasks").then(r=>r.json()).then(data=>{
+  const box=document.getElementById("tasks");
+  data.forEach(t=>{
+    const btn=document.createElement("button");
+    btn.innerText="Xem video";
+    btn.onclick=()=>{
+      window.open(t.link);
+      setTimeout(()=>{
+        fetch("/viewed",{method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({id:t.id})
+        });
+        alert("Đã tính view");
+      },15000);
+    };
+    box.appendChild(btn);
+  });
+});
+</script>
+</body>
+</html>
